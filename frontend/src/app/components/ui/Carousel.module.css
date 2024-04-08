@@ -1,0 +1,38 @@
+.carousel {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  .slide {
+    display: none;
+    transition: ease-in-out 0.3s;
+  }
+  
+  .active {
+    display: block;
+  }
+  
+  .leftArrow, .rightArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #326300;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .leftArrow {
+    left: 10px;
+  }
+  
+  .rightArrow {
+    right: 10px;
+  }
+  
+  .image {
+    width: 100%;
+    display: block;
+  }
+  

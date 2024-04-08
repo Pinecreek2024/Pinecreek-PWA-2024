@@ -1,0 +1,16 @@
+.socialMediaIntegration {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 2rem; /* Adjust icon size as needed */
+  }
+  
+  .icons a {
+    color: #326300; /* Adjust to match branding */
+  }
+  

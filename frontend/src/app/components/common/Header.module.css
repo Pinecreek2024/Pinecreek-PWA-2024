@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background-color: #326300;
+  }
+  
+  .logo {
+    flex: 1;
+  }
+  
+  .nav {
+    flex: 2;
+  }
+  
+  .nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .nav ul li {
+    cursor: pointer;
+  }
+  
+  .nav ul li:hover {
+    background-color: #7b0f27;
+  }
+  

@@ -1,0 +1,21 @@
+.shoppingCartItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cb2525;
+    padding: 1rem 0;
+  }
+  
+  .itemInfo {
+    flex-grow: 1;
+  }
+  
+  .removeButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #cb2525; /* Red color to indicate a delete action */
+    font-size: 0.9rem;
+  }
+  

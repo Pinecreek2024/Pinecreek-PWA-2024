@@ -1,0 +1,31 @@
+.footer {
+    background-color: #121212;
+    color: #ffffff;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .footerContent {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .links, .contactInfo {
+    flex-basis: 48%;
+  }
+  
+  .links ul, .contactInfo ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .links li, .contactInfo li {
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .copyRight {
+    font-size: 0.8rem;
+  }
+  

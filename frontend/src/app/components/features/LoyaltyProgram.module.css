@@ -1,0 +1,11 @@
+.loyaltyProgram {
+    padding: 1rem;
+    border: 1px solid #cb2525;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .enroll, .memberInfo {
+    margin-top: 1rem;
+  }
+  

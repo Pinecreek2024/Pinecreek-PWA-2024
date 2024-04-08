@@ -1,0 +1,12 @@
+.rating {
+    display: inline-flex;
+  }
+  
+  .filled {
+    color: #ffcc00; /* Gold color for filled stars */
+  }
+  
+  .empty {
+    color: #cccccc; /* Light gray color for empty stars */
+  }
+  

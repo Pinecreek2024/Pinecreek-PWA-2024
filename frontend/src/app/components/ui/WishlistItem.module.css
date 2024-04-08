@@ -1,0 +1,16 @@
+.wishlistItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cb2525;
+    padding: 0.5rem 0;
+  }
+  
+  .itemDetails {
+    flex-grow: 1;
+  }
+  
+  .itemName, .itemPrice {
+    margin: 0;
+  }
+  

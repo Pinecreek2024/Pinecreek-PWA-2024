@@ -1,0 +1,29 @@
+.reviewsSection {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .review {
+    border-bottom: 1px solid #cb2525;
+    padding: 0.5rem 0;
+  }
+  
+  .reviewHeader {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  
+  .author, .date {
+    margin: 0;
+  }
+  
+  .content {
+    margin-top: 0.5rem;
+  }
+  
+  .rating {
+    margin-top: 0.5rem;
+    font-style: italic;
+  }
+  

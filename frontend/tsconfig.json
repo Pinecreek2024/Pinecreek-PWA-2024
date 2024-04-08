@@ -1,0 +1,76 @@
+{
+  "compilerOptions": {
+    "target": "es2020", // modern target
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "WebWorker"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve", // new JSX transform
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": [
+        "src/app/components/*"
+      ],
+      "@/pages/*": [
+        "src/pages/*"
+      ],
+      "@/styles/*": [
+        "src/styles/*"
+      ],
+      "@/public/*": [
+        "public/*"
+      ],
+      "@/utils/*": [
+        "src/utils/*"
+      ],
+      "@/services/*": [
+        "src/app/services/*"
+      ],
+      "@/hooks/*": [
+        "src/app/hooks/*"
+      ],
+      "@/context/*": [
+        "src/app/context/*"
+      ],
+      "@/assets/*": [
+        "src/app/assets/*"
+      ],
+      "@/locales/*": [
+        "public/locales/*"
+      ],
+      "@/types/*": [
+        "src/types/*"
+      ],
+      "@/interfaces/*": [
+        "src/app/interfaces/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

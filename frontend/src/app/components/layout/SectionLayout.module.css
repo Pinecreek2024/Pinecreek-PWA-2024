@@ -1,0 +1,29 @@
+.section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+  
+  .title {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #326300;
+    font-size: 1.5rem;
+  }
+  
+  .description {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #121212;
+  }
+  
+  .content {
+    background-color: #f9f9f9; /* Light grey background for contrast */
+    padding: 1rem; /* Padding for spacing inside the content box */
+    border-radius: 8px; /* Rounded corners for a modern look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    color: #333333; /* Dark grey color for the text for readability */
+    font-size: 1rem; /* Standard font size for content */
+    line-height: 1.6; /* Line height for better readability */
+    max-width: 800px; /* Max-width to control the content width and readability */
+    margin: auto; /* Centering the content block */
+  }
