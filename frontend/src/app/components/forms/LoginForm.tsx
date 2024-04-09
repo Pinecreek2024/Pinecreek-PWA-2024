@@ -7,9 +7,42 @@ const LoginForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Authentication logic goes here
+
+    // Simple form validation
+    if (!email || !password) {
+      alert('Please enter both email and password.');
+      return;
+    }
+
+    const loginData = {
+      email,
+      password
+    };
+
+    try {
+      // Replace with your actual API endpoint
+      const response = await fetch('http://localhost:8000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      if (response.ok) {
+        // Handle successful authentication
+        alert('Logged in successfully!');
+        // Update global state or redirect as needed
+      } else {
+        // Handle errors, such as invalid credentials
+        alert('Login failed. Please check your credentials.');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('Error logging in.');
+    }
   };
 
   return (
@@ -29,7 +62,7 @@ const LoginForm: React.FC = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button onClick={() => {}}>Log In</Button>
+      <Button type="submit">Log In</Button>
     </form>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './TextInput.module.css';
+import styles from './TextInput.module.css'; // Ensure this CSS module exists
 
 interface TextInputProps {
   label: string;
@@ -13,7 +13,7 @@ interface TextInputProps {
 const TextInput: React.FC<TextInputProps> = ({ label, name, type = 'text', placeholder, value, onChange }) => {
   return (
     <div className={styles.inputGroup}>
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name} className={styles.label}>{label}</label>
       <input
         type={type}
         name={name}

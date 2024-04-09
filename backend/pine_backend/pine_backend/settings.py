@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'apps.reservations.apps.ReservationsConfig',
     'apps.orders.apps.OrdersConfig',
     'apps.events.apps.EventsConfig',
+    'apps.users.apps.UsersConfig',
 
     # Django REST framework
     'rest_framework',

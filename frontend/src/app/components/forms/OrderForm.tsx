@@ -1,19 +1,34 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import TextInput from '@/components/ui/TextInput';
 import Dropdown from '@/components/ui/Dropdown';
 import Button from '@/components/common/Button';
 import styles from './OrderForm.module.css';
 
+interface MenuItem {
+  value: string;
+  label: string;
+}
+
 const OrderForm: React.FC = () => {
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [menuItem, setMenuItem] = useState<string>('');
   const [quantity, setQuantity] = useState<string>('');
   const [specialInstructions, setSpecialInstructions] = useState<string>('');
 
-  const menuItems = [
-    { value: 'item1', label: 'Item 1' },
-    { value: 'item2', label: 'Item 2' },
-    // Add more menu items as needed
-  ];
+  useEffect(() => {
+    // Fetch menu items from an API
+    const fetchMenuItems = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/menu-items');
+        const items = await response.json();
+        setMenuItems(items);
+      } catch (error) {
+        console.error('Error fetching menu items:', error);
+      }
+    };
+
+    fetchMenuItems();
+  }, []);
 
   const handleDropdownChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setMenuItem(e.target.value);
@@ -28,9 +43,40 @@ const OrderForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic here
+    // Basic validation
+    if (!menuItem || !quantity) {
+      alert('Please select a menu item and specify the quantity.');
+      return;
+    }
+
+    const orderData = {
+      menuItem,
+      quantity: parseInt(quantity, 10),
+      specialInstructions
+    };
+
+    try {
+      // Replace with your actual API endpoint
+      const response = await fetch('http://localhost:8000/api/place-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      if (response.ok) {
+        alert('Order placed successfully!');
+        // Reset form or perform other actions as needed
+      } else {
+        alert('Failed to place order.');
+      }
+    } catch (error) {
+      console.error('Error placing order:', error);
+      alert('Error in order submission.');
+    }
   };
 
   return (
@@ -55,7 +101,7 @@ const OrderForm: React.FC = () => {
         value={specialInstructions}
         onChange={handleTextInputChange}
       />
-      <Button onClick={() => {}}>Place Order</Button>
+      <Button type="submit">Place Order</Button>
     </form>
   );
 };

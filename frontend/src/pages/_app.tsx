@@ -1,7 +1,8 @@
 // frontend/src/pages/_app.tsx
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
-import { UserProvider } from '@/context/UserContext'; // Ensure this path is correct
+import { ThemeProvider } from 'styled-components'; // Import ThemeProvider
+import theme from '@/styles/theme'; // Import your theme
 import '../i18n'; // Assuming the i18n configuration is in the src directory
 import '@/styles/globals.css'; // Import global styles
 
@@ -16,9 +17,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   return (
-    <UserProvider>
+    <ThemeProvider theme={theme}> {/* Wrap your components with ThemeProvider */}
       <Component {...pageProps} />
-    </UserProvider>
+    </ThemeProvider>
   );
 };
 

@@ -1,0 +1,8 @@
+/* frontend/src/pages/menu.module.css */
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  

@@ -1,0 +1,8 @@
+/* frontend/src/pages/events.module.css */
+.eventsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  

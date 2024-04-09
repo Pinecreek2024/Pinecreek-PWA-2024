@@ -23,6 +23,12 @@ const EventBooking: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!eventType || numberOfGuests <= 0) {
+      alert('Please enter valid event details.');
+      return;
+    }
+
     const bookingDetails: BookingDetails = {
       eventType,
       eventDate,
@@ -32,9 +38,10 @@ const EventBooking: React.FC = () => {
 
     try {
       const bookingConfirmation = await eventService.bookEvent(eventId, bookingDetails);
-      // Handle successful booking here
+      alert('Event booked successfully!');
     } catch (error) {
       console.error('Error booking event:', error);
+      alert('Failed to book the event.');
     }
   };
 
@@ -55,7 +62,7 @@ const EventBooking: React.FC = () => {
         label="Number of Guests"
         name="numberOfGuests"
         type="number"
-        value={numberOfGuests.toString()} // Convert number to string for input
+        value={numberOfGuests.toString()}
         onChange={(e) => setNumberOfGuests(parseInt(e.target.value, 10) || 0)}
       />
       <TextArea

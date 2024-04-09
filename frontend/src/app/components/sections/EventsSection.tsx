@@ -1,17 +1,19 @@
+// frontend/src/app/components/sections/EventsSection.tsx
 import React, { useEffect, useState } from 'react';
-import Card from '@/components/ui/Card';
-import eventService from '@/services/eventService';
+import SectionLayout from '../layout/SectionLayout';
+import Card from '../ui/Card';
+import { Event } from '../../interfaces/eventInterfaces'; // Import the Event interface
 import styles from './EventsSection.module.css';
-import { Event } from '@/interfaces/eventInterfaces'; // Import the Event interface
 
 const EventsSection: React.FC = () => {
-  const [events, setEvents] = useState<Event[]>([]); // Explicitly type the events state
+  const [events, setEvents] = useState<Event[]>([]); // Use the Event interface for the state
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const fetchedEvents = await eventService.getEvents();
-        setEvents(fetchedEvents);
+        const response = await fetch('http://localhost:8000/api/events');
+        const data = await response.json();
+        setEvents(data);
       } catch (error) {
         console.error('Failed to fetch events:', error);
       }
@@ -21,8 +23,7 @@ const EventsSection: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.eventsSection}>
-      <h2>Upcoming Events</h2>
+    <SectionLayout title="Upcoming Events">
       <div className={styles.cardsContainer}>
         {events.map(event => (
           <Card
@@ -30,11 +31,11 @@ const EventsSection: React.FC = () => {
             title={event.title}
             imageUrl={event.imageUrl}
             description={event.description}
-            onClick={() => {/* Handle event selection or navigation */}}
+            onClick={() => {/* Define onClick action if necessary */}}
           />
         ))}
       </div>
-    </div>
+    </SectionLayout>
   );
 };
 

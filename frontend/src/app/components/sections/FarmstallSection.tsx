@@ -1,30 +1,41 @@
-import React from 'react';
-import Card from '@/components/ui/Card'; // Reusable Card component for displaying farmstall items
+// frontend/src/app/components/sections/FarmstallSection.tsx
+import React, { useEffect, useState } from 'react';
+import SectionLayout from '../layout/SectionLayout';
+import Card from '../ui/Card';
+import { FarmstallItem } from '@/interfaces/farmstalInterfaces'; // Import the FarmstallItem interface
 import styles from './FarmstallSection.module.css';
 
 const FarmstallSection: React.FC = () => {
-  const farmstallItems = [
-    // Sample data; ideally fetched from an API
-    { id: 1, title: 'Item 1', imageUrl: '/path/to/item1.jpg', description: 'Description for Item 1' },
-    { id: 2, title: 'Item 2', imageUrl: '/path/to/item2.jpg', description: 'Description for Item 2' },
-    // Additional items as needed
-  ];
+  const [farmstallItems, setFarmstallItems] = useState<FarmstallItem[]>([]); // Use the FarmstallItem interface for the state
+
+  useEffect(() => {
+    const fetchFarmstallItems = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/farmstall');
+        const data = await response.json();
+        setFarmstallItems(data);
+      } catch (error) {
+        console.error('Failed to fetch farmstall items:', error);
+      }
+    };
+
+    fetchFarmstallItems();
+  }, []);
 
   return (
-    <div className={styles.farmstallSection}>
-      <h2>Explore Our Farmstall</h2>
+    <SectionLayout title="Explore Our Farmstall">
       <div className={styles.cardsContainer}>
         {farmstallItems.map(item => (
-          <Card 
+          <Card
             key={item.id}
             title={item.title}
             imageUrl={item.imageUrl}
             description={item.description}
-            onClick={() => {/* Item click handler */}}
+            onClick={() => {/* Define onClick action if necessary */}}
           />
         ))}
       </div>
-    </div>
+    </SectionLayout>
   );
 };
 

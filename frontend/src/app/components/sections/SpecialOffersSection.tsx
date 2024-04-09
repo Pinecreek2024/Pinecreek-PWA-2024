@@ -1,14 +1,30 @@
-import React from 'react';
-import Card from '@/components/ui/Card'; // Assuming Card is used for displaying offers
+// frontend/src/app/components/sections/SpecialOffersSection.tsx
+import React, { useEffect, useState } from 'react';
+import Card from '@/components/ui/Card';
+import { SpecialOffer } from '@/interfaces/specialInterfaces'; // Import the SpecialOffer interface
 import styles from './SpecialOffersSection.module.css';
 
 const SpecialOffersSection: React.FC = () => {
-  const specialOffers = [
-    // Sample offers; typically fetched from an API
-    { id: 1, title: 'Offer 1', imageUrl: '/path/to/offer1.jpg', description: 'Description for Offer 1' },
-    { id: 2, title: 'Offer 2', imageUrl: '/path/to/offer2.jpg', description: 'Description for Offer 2' },
-    // More offers as needed
-  ];
+  const [specialOffers, setSpecialOffers] = useState<SpecialOffer[]>([]);
+
+  useEffect(() => {
+    const fetchSpecialOffers = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/special-offers');
+        const data = await response.json();
+        setSpecialOffers(data);
+      } catch (error) {
+        console.error('Failed to fetch special offers:', error);
+      }
+    };
+
+    fetchSpecialOffers();
+  }, []);
+
+  const handleOfferClick = (offerId: number) => {
+    // Define action for offer click (e.g., navigate to offer details)
+    console.log('Special offer clicked:', offerId);
+  };
 
   return (
     <div className={styles.specialOffersSection}>
@@ -20,7 +36,7 @@ const SpecialOffersSection: React.FC = () => {
             title={offer.title}
             imageUrl={offer.imageUrl}
             description={offer.description}
-            onClick={() => {/* Handle offer selection or navigation */}}
+            onClick={() => handleOfferClick(offer.id)}
           />
         ))}
       </div>

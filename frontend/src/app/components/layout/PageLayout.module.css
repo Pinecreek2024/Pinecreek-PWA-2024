@@ -1,4 +1,22 @@
+.pageLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: white;
+  /* Other dark mode specific styles */
+}
+
+.light-mode {
+  background-color: white;
+  color: black;
+  /* Other light mode specific styles */
+}
+
 .mainContent {
-    padding: 20px;
-  }
-  
+  flex-grow: 1;
+  padding: 20px;
+}

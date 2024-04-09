@@ -1,0 +1,22 @@
+/* frontend/src/pages/register.module.css */
+.registerContainer {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .registerForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .registerButton {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

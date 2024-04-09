@@ -1,23 +1,24 @@
 import React from 'react';
-import styles from './TextInput.module.css';
 
 interface TextAreaProps {
   label: string;
   name: string;
+  placeholder?: string; // Optional placeholder prop
   value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const TextArea: React.FC<TextAreaProps> = ({ label, name, value, onChange }) => {
+const TextArea: React.FC<TextAreaProps> = ({ label, name, placeholder, value, onChange }) => {
   return (
-    <div className={styles.textAreaGroup}>
-      <label htmlFor={name}>{label}</label>
+    <div>
+      {label && <label htmlFor={name}>{label}</label>}
       <textarea
-        name={name}
         id={name}
+        name={name}
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={styles.textArea}
+        // You can add other necessary attributes and styles here
       />
     </div>
   );

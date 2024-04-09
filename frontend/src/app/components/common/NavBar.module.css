@@ -1,0 +1,42 @@
+/* NavBar.module.css */
+.navBar {
+    /* Style for the entire nav bar */
+    background-color: #f3f4f4; /* Example background color */
+    padding: 0.5rem 1rem;
+  }
+  
+  .navList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Adjust the alignment as needed */
+  }
+  
+  .navItem {
+    margin: 0 1rem;
+    /* Additional styling for nav items can go here */
+  }
+  
+  .navItem span {
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .activeNavItem span {
+    color: #326300; /* Highlight color for the active link */
+    font-weight: bold;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .navList {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navItem {
+      margin: 0.5rem 0;
+    }
+  }
+  

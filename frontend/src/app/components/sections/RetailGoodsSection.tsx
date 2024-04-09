@@ -1,14 +1,30 @@
-import React from 'react';
-import Card from '@/components/ui/Card'; // Assuming the Card component is used for individual items
+// frontend/src/app/components/sections/RetailGoodsSection.tsx
+import React, { useEffect, useState } from 'react';
+import Card from '@/components/ui/Card';
+import { RetailGood } from '@/interfaces/retailInterfaces';
 import styles from './RetailGoodsSection.module.css';
 
 const RetailGoodsSection: React.FC = () => {
-  const retailGoods = [
-    // Sample data, typically sourced from an API
-    { id: 1, title: 'Product 1', imageUrl: '/path/to/product1.jpg', description: 'Description for Product 1' },
-    { id: 2, title: 'Product 2', imageUrl: '/path/to/product2.jpg', description: 'Description for Product 2' },
-    // More products as needed
-  ];
+  const [retailGoods, setRetailGoods] = useState<RetailGood[]>([]);
+
+  useEffect(() => {
+    const fetchRetailGoods = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/retail-goods');
+        const data = await response.json();
+        setRetailGoods(data);
+      } catch (error) {
+        console.error('Failed to fetch retail goods:', error);
+      }
+    };
+
+    fetchRetailGoods();
+  }, []);
+
+  const handleProductClick = (productId: number) => {
+    // Define action for product click (e.g., navigate to product details)
+    console.log('Product clicked:', productId);
+  };
 
   return (
     <div className={styles.retailGoodsSection}>
@@ -20,7 +36,7 @@ const RetailGoodsSection: React.FC = () => {
             title={product.title}
             imageUrl={product.imageUrl}
             description={product.description}
-            onClick={() => {/* Handle click event for product details or purchase */}}
+            onClick={() => handleProductClick(product.id)}
           />
         ))}
       </div>

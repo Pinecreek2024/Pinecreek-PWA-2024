@@ -1,7 +1,7 @@
 // YourProjectDirectory/frontend/src/app/hooks/useAuth.ts
 import { useContext } from 'react';
 import axios from 'axios';
-import UserContext, { UserContextType } from '@/context/UserContext';
+import UserContext, { UserContextType } from '@/context/AuthContext';
 
 const useAuth = () => {
   const context = useContext<UserContextType | null>(UserContext);

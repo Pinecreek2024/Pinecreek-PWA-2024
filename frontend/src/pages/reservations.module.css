@@ -1,0 +1,22 @@
+/* frontend/src/pages/reservations.module.css */
+.reservationsContainer {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .reservationsForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .reservationButton {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

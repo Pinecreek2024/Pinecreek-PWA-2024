@@ -1,4 +1,4 @@
-// src/interfaces/eventInterfaces.ts
+// frontend/src/app/interfaces/eventInterfaces.ts
 
 export interface Event {
   id: number;

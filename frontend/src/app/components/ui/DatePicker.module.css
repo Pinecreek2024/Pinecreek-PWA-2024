@@ -1,17 +1,12 @@
+/* frontend/src/app/components/ui/DatePicker/DatePicker.module.css */
 .datePickerGroup {
-    margin-bottom: 1rem;
-  }
-  
-  .datePickerGroup label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #326300;
-  }
-  
-  .datePicker {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #cb2525;
-    border-radius: 4px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.datePicker {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

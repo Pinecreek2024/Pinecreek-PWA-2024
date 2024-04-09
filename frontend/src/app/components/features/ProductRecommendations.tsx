@@ -1,14 +1,39 @@
-import React from 'react';
-import Card from '@/components/ui/Card'; // Assuming a Card component for individual items
+import React, { useEffect, useState } from 'react';
+import Card from '@/components/ui/Card';
 import styles from './ProductRecommendations.module.css';
 
+interface Product {
+  id: number;
+  title: string;
+  imageUrl: string;
+  description: string;
+}
+
 const ProductRecommendations: React.FC = () => {
-  const recommendedProducts = [
-    // Sample data, should ideally come from an API
-    { id: 1, title: 'Product 1', imageUrl: '/path/to/image1.jpg', description: 'Description 1' },
-    { id: 2, title: 'Product 2', imageUrl: '/path/to/image2.jpg', description: 'Description 2' },
-    // Add more products as needed
-  ];
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    // Replace with the actual API call
+    const fetchRecommendedProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/recommended-products');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const products = await response.json();
+        setRecommendedProducts(products);
+      } catch (error) {
+        console.error('Failed to fetch recommended products:', error);
+      }
+    };
+
+    fetchRecommendedProducts();
+  }, []);
+
+  const handleProductClick = (productId: number) => {
+    // Handle the product click event, such as navigating to the product detail page
+    console.log(`Product ${productId} clicked`);
+  };
 
   return (
     <div className={styles.productRecommendations}>
@@ -20,7 +45,7 @@ const ProductRecommendations: React.FC = () => {
             title={product.title}
             imageUrl={product.imageUrl}
             description={product.description}
-            onClick={() => {/* Handle click event */}}
+            onClick={() => handleProductClick(product.id)}
           />
         ))}
       </div>

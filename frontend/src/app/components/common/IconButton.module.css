@@ -1,18 +1,25 @@
+/* IconButton.module.css */
 .iconButton {
-    border: none;
-    background: none;
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-    transition: background-color 0.3s;
-  
-    /* Icon size can be adjusted as needed */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+
+  /* You can adjust the size of the icon if needed */
+  font-size: 24px; 
+
+  /* Style for hover effect */
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
   }
-  
-  .iconButton:hover {
-    background-color: #f3f4e7;
+
+  /* Focus outline for accessibility */
+  &:focus {
+    outline: 2px solid blue;
   }
-  
+}

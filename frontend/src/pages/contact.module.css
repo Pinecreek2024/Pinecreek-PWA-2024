@@ -1,0 +1,22 @@
+/* frontend/src/pages/contact.module.css */
+.contactFormContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .contactFormContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .submitButton {
+    padding: 10px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

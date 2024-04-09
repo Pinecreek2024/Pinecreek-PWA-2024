@@ -1,18 +1,34 @@
-import React from 'react';
-import Card from '@/components/ui/Card'; // Reusable Card component for displaying menu items
+// frontend/src/app/components/sections/MenuSection.tsx
+import React, { useEffect, useState } from 'react';
+import SectionLayout from '../layout/SectionLayout';
+import Card from '../ui/Card';
+import { MenuItem } from '../../interfaces/menuInterfaces';
 import styles from './MenuSection.module.css';
 
 const MenuSection: React.FC = () => {
-  const menuItems = [
-    // Sample data; typically fetched from an API
-    { id: 1, title: 'Dish 1', imageUrl: '/path/to/dish1.jpg', description: 'Description of Dish 1' },
-    { id: 2, title: 'Dish 2', imageUrl: '/path/to/dish2.jpg', description: 'Description of Dish 2' },
-    // More menu items as necessary
-  ];
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/menu');
+        const data = await response.json();
+        setMenuItems(data);
+      } catch (error) {
+        console.error('Failed to fetch menu items:', error);
+      }
+    };
+
+    fetchMenuItems();
+  }, []);
+
+  const handleItemClick = (itemId: number) => {
+    // Define what should happen when a menu item is clicked
+    console.log('Menu item clicked:', itemId);
+  };
 
   return (
-    <div className={styles.menuSection}>
-      <h2>Our Menu</h2>
+    <SectionLayout title="Our Menu">
       <div className={styles.cardsContainer}>
         {menuItems.map(item => (
           <Card
@@ -20,11 +36,11 @@ const MenuSection: React.FC = () => {
             title={item.title}
             imageUrl={item.imageUrl}
             description={item.description}
-            onClick={() => {/* Handle item selection or navigation */}}
+            onClick={() => handleItemClick(item.id)}
           />
         ))}
       </div>
-    </div>
+    </SectionLayout>
   );
 };
 

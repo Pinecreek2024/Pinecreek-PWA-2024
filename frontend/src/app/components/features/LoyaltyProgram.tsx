@@ -1,15 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@/components/common/Button';
 import styles from './LoyaltyProgram.module.css';
 
 const LoyaltyProgram: React.FC = () => {
   const [isEnrolled, setIsEnrolled] = useState(false);
-  const [points, setPoints] = useState(0); // Assume points are fetched from an API
+  const [points, setPoints] = useState(0);
 
-  const handleEnroll = () => {
-    // Enroll logic here
-    setIsEnrolled(true);
-    // Fetch points if necessary
+  useEffect(() => {
+    if (isEnrolled) {
+      // Fetch points from API when enrolled
+      fetchPoints();
+    }
+  }, [isEnrolled]);
+
+  const handleEnroll = async () => {
+    // Enroll logic here (e.g., API call to enroll the user)
+    try {
+      const response = await fetch('http://localhost:8000/api/enroll', {
+        method: 'POST',
+        // Include necessary headers, body, etc.
+      });
+
+      if (response.ok) {
+        setIsEnrolled(true);
+        fetchPoints(); // Fetch points after successful enrollment
+      } else {
+        console.error('Failed to enroll in loyalty program');
+      }
+    } catch (error) {
+      console.error('Error enrolling in loyalty program:', error);
+    }
+  };
+
+  const fetchPoints = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/points');
+      if (response.ok) {
+        const data = await response.json();
+        setPoints(data.points); // Assume the response has a 'points' field
+      } else {
+        console.error('Failed to fetch points');
+      }
+    } catch (error) {
+      console.error('Error fetching points:', error);
+    }
   };
 
   return (

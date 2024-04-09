@@ -1,22 +1,24 @@
-import React from 'react';
+// frontend/src/app/components/sections/ReviewsSection.tsx
+import React, { useEffect, useState } from 'react';
+import { Review } from '@/interfaces/reviewsInterfaces'; // Import the Review interface
 import styles from './ReviewsSection.module.css';
 
-// Sample data structure for a review
-interface Review {
-  id: number;
-  author: string;
-  date: string;
-  content: string;
-  rating: number; // Assuming a rating out of 5
-}
-
 const ReviewsSection: React.FC = () => {
-  const reviews: Review[] = [
-    // Sample reviews; in a real application, these would be fetched from an API
-    { id: 1, author: 'Jane Doe', date: '2022-01-15', content: 'Great experience...', rating: 5 },
-    { id: 2, author: 'John Smith', date: '2022-01-20', content: 'Loved the ambiance...', rating: 4 },
-    // Additional reviews as needed
-  ];
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/reviews');
+        const data = await response.json();
+        setReviews(data);
+      } catch (error) {
+        console.error('Failed to fetch reviews:', error);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   return (
     <div className={styles.reviewsSection}>

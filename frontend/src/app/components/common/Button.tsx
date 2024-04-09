@@ -1,27 +1,35 @@
 import React from 'react';
-import styles from './Button.module.css'; // Assuming you have a CSS module for styling
+import styles from './Button.module.css';
 
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset'; // Including the 'type' prop
+  type?: 'button' | 'submit' | 'reset';
   className?: string;
-  // Add any additional props you might need
+  ariaLabel?: string; // For accessibility, especially for icon buttons
 }
 
 const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
-  type = 'button', // Default type is 'button'
+  type = 'button',
   className,
+  ariaLabel,
   ...props
 }) => {
+  // Construct class names conditionally
+  const buttonClassNames = [styles.button];
+  if (className) {
+    buttonClassNames.push(className);
+  }
+
   return (
     <button
-      className={`${styles.button} ${className}`}
+      className={buttonClassNames.join(' ')}
       onClick={onClick}
       type={type}
-      {...props} // Spread any additional props
+      aria-label={ariaLabel || (typeof children === 'string' ? children : '')}
+      {...props}
     >
       {children}
     </button>

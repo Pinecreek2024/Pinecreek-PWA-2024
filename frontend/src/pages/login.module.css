@@ -1,0 +1,22 @@
+/* frontend/src/pages/login.module.css */
+.loginContainer {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .loginButton {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
