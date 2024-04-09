@@ -1,18 +1,15 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('apps.app_auth.urls')),
-    path('menu/', include('apps.menu.urls')),
-    path('reservations/', include('apps.reservations.urls')),
-    path('orders/', include('apps.orders.urls')),
-    path('events/', include('apps.events.urls')),
-    path('users/', include('apps.users.urls')),  # Adding the users app URLs
-    # Add any additional app URLs here
+    # URL configuration for the menu_ordering app
+    path('api/menu_ordering/', include('menu_ordering.urls')),
+    # URL configuration for the table_reservations app
+    path('api/table_reservations/', include('table_reservations.urls')),
+    # URL configuration for the event_quotations app
+    path('api/event_quotations/', include('event_quotations.urls')),
+    # URL configuration for the customer_portal app
+    path('api/customer_portal/', include('customer_portal.urls')),
+    # Include other app URLs here as needed
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

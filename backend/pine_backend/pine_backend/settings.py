@@ -34,15 +34,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Custom apps
-    'apps.app_auth.apps.AppAuthConfig',
-    'apps.menu.apps.MenuConfig',
-    'apps.reservations.apps.ReservationsConfig',
-    'apps.orders.apps.OrdersConfig',
-    'apps.events.apps.EventsConfig',
-    'apps.users.apps.UsersConfig',
+    'menu_ordering',
+    'table_reservations',
+    'event_quotations',
+    'customer_portal',
 
     # Django REST framework
     'rest_framework',
+    'rest_framework.authtoken'
+
 ]
 
 MIDDLEWARE = [
@@ -124,11 +124,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom User Model
-AUTH_USER_MODEL = 'app_auth.CustomUser'
 
 # REST Framework Configuration (Optional, add if needed)
 REST_FRAMEWORK = {
-    # Default authentication and permission classes, pagination, etc.
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'EXCEPTION_HANDLER': 'my_project.my_app.utils.custom_exception_handler',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
-
-# Add other settings as needed

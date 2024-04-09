@@ -23,11 +23,21 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
   return (
     <div className={styles.carousel}>
-      <span className={styles.leftArrow} onClick={prevSlide}>&#10094;</span>
-      <span className={styles.rightArrow} onClick={nextSlide}>&#10095;</span>
+      <button className={styles.leftArrow} onClick={prevSlide} aria-label="Previous slide">
+        &#10094;
+      </button>
+      <button className={styles.rightArrow} onClick={nextSlide} aria-label="Next slide">
+        &#10095;
+      </button>
       {images.map((image, index) => (
-        <div className={index === current ? `${styles.slide} ${styles.active}` : styles.slide} key={index}>
-          {index === current && (<img src={image} alt={`Slide ${index}`} className={styles.image} />)}
+        <div
+          className={index === current ? `${styles.slide} ${styles.active}` : styles.slide}
+          key={index}
+          aria-hidden={index !== current}
+        >
+          {index === current && (
+            <img src={image} alt={`Slide ${index}`} className={styles.image} />
+          )}
         </div>
       ))}
     </div>

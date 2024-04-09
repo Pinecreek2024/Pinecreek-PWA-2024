@@ -1,4 +1,3 @@
-// frontend/src/app/components/sections/MenuSection.tsx
 import React, { useEffect, useState } from 'react';
 import SectionLayout from '../layout/SectionLayout';
 import Card from '../ui/Card';
@@ -7,15 +6,23 @@ import styles from './MenuSection.module.css';
 
 const MenuSection: React.FC = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
         const response = await fetch('http://localhost:8000/api/menu');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const data = await response.json();
         setMenuItems(data);
       } catch (error) {
         console.error('Failed to fetch menu items:', error);
+        setError('Failed to load menu items. Please try again later.');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -23,9 +30,17 @@ const MenuSection: React.FC = () => {
   }, []);
 
   const handleItemClick = (itemId: number) => {
-    // Define what should happen when a menu item is clicked
     console.log('Menu item clicked:', itemId);
+    // Additional click handling logic here
   };
+
+  if (isLoading) {
+    return <div>Loading menu items...</div>; // Or use a spinner component
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>; // Display error message
+  }
 
   return (
     <SectionLayout title="Our Menu">

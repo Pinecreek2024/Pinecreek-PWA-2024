@@ -1,4 +1,3 @@
-// frontend/src/app/components/sections/SpecialOffersSection.tsx
 import React, { useEffect, useState } from 'react';
 import Card from '@/components/ui/Card';
 import { SpecialOffer } from '@/interfaces/specialInterfaces'; // Import the SpecialOffer interface
@@ -6,25 +5,36 @@ import styles from './SpecialOffersSection.module.css';
 
 const SpecialOffersSection: React.FC = () => {
   const [specialOffers, setSpecialOffers] = useState<SpecialOffer[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchSpecialOffers = async () => {
       try {
         const response = await fetch('http://localhost:8000/api/special-offers');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
         const data = await response.json();
         setSpecialOffers(data);
       } catch (error) {
         console.error('Failed to fetch special offers:', error);
+        setError('Failed to load special offers. Please try again later.');
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchSpecialOffers();
   }, []);
 
-  const handleOfferClick = (offerId: number) => {
-    // Define action for offer click (e.g., navigate to offer details)
-    console.log('Special offer clicked:', offerId);
-  };
+  if (isLoading) {
+    return <div>Loading special offers...</div>; // Or use a spinner component
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>; // Display error message
+  }
 
   return (
     <div className={styles.specialOffersSection}>
@@ -36,7 +46,7 @@ const SpecialOffersSection: React.FC = () => {
             title={offer.title}
             imageUrl={offer.imageUrl}
             description={offer.description}
-            onClick={() => handleOfferClick(offer.id)}
+            onClick={() => console.log('Special offer clicked:', offer.id)}
           />
         ))}
       </div>

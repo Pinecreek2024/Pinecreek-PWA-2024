@@ -1,3 +1,4 @@
+// EventQuoteForm.tsx
 import React, { useState } from 'react';
 import DatePicker from '@/components/ui/DatePicker';
 import TextInput from '@/components/ui/TextInput';
@@ -14,7 +15,6 @@ const EventQuoteForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
     if (!eventType || !guestCount || !additionalInfo) {
       alert('Please fill out all fields.');
       return;
@@ -23,12 +23,11 @@ const EventQuoteForm: React.FC = () => {
     const quoteRequestData = {
       eventType,
       guestCount,
-      eventDate: eventDate.toISOString(), // Adjust formatting as required
+      eventDate: eventDate.toISOString(),
       additionalInfo
     };
 
     try {
-      // Replace with your actual API endpoint
       const response = await fetch('http://localhost:8000/api/event-quotes', {
         method: 'POST',
         headers: {
@@ -39,7 +38,6 @@ const EventQuoteForm: React.FC = () => {
 
       if (response.ok) {
         alert('Quote request submitted successfully!');
-        // Reset form or further actions
       } else {
         alert('Failed to submit quote request.');
       }
@@ -66,6 +64,7 @@ const EventQuoteForm: React.FC = () => {
       />
       <DatePicker
         label="Event Date"
+        name="eventDate"  // Adding 'name' attribute
         selectedDate={eventDate}
         onChange={setEventDate}
       />

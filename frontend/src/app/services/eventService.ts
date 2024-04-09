@@ -1,39 +1,53 @@
 import axios from 'axios';
 
-const LOCAL_DJANGO_API_URL = 'http://localhost:8000/api'; // Adjust the port if different
+const API_URL = 'http://localhost:8000/api/event_quotations/';
 
-const eventService = {
-  getEvents: async () => {
+// Function to get all events
+export const getEvents = async () => {
     try {
-      const response = await axios.get(`${LOCAL_DJANGO_API_URL}/events/`);
-      return response.data; // Returns a list of events
+        const response = await axios.get(`${API_URL}events/`);
+        return response.data;
     } catch (error) {
-      console.error('Error fetching events:', error);
-      throw error;
+        throw error;
     }
-  },
+}
 
-  getEventById: async (eventId: number) => {
+// Function to get a specific event by ID
+export const getEventById = async (id: number) => {
     try {
-      const response = await axios.get(`${LOCAL_DJANGO_API_URL}/events/${eventId}/`);
-      return response.data; // Returns details of a specific event
+        const response = await axios.get(`${API_URL}events/${id}/`);
+        return response.data;
     } catch (error) {
-      console.error(`Error fetching event ${eventId}:`, error);
-      throw error;
+        throw error;
     }
-  },
+}
 
-  bookEvent: async (eventId: number, bookingDetails: any) => {
+// Function to create a new event
+export const createEvent = async (eventData: any) => {
     try {
-      const response = await axios.post(`${LOCAL_DJANGO_API_URL}/events/${eventId}/book/`, bookingDetails);
-      return response.data; // Confirmation or details of the booked event
+        const response = await axios.post(`${API_URL}events/`, eventData);
+        return response.data;
     } catch (error) {
-      console.error(`Error booking event ${eventId}:`, error);
-      throw error;
+        throw error;
     }
-  },
+}
 
-  // Additional event-related functions can be added here
-};
+// Function to update an event
+export const updateEvent = async (id: number, eventData: any) => {
+    try {
+        const response = await axios.put(`${API_URL}events/${id}/`, eventData);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
 
-export default eventService;
+// Function to delete an event
+export const deleteEvent = async (id: number) => {
+    try {
+        const response = await axios.delete(`${API_URL}events/${id}/`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}

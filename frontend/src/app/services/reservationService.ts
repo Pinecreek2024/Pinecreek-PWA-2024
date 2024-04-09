@@ -1,54 +1,53 @@
-// Import Axios and necessary types
 import axios from 'axios';
-import { Reservation } from '@/types/reservationTypes'; // Replace with your actual Reservation type
 
-const baseUrl = '/api/reservations'; // Update with your API endpoint
+const API_URL = 'http://localhost:8000/api/table_reservations/';
 
-// Fetch all reservations
-export const getReservations = async (): Promise<Reservation[]> => {
-  try {
-    const response = await axios.get(baseUrl);
-    return response.data;
-  } catch (error) {
-    throw new Error('Error fetching reservations');
-  }
-};
+// Function to get all reservations
+export const getReservations = async () => {
+    try {
+        const response = await axios.get(`${API_URL}reservations/`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
 
-// Fetch a specific reservation by ID
-export const getReservationById = async (id: string): Promise<Reservation> => {
-  try {
-    const response = await axios.get(`${baseUrl}/${id}`);
-    return response.data;
-  } catch (error) {
-    throw new Error('Error fetching reservation by ID');
-  }
-};
+// Function to get a specific reservation by ID
+export const getReservationById = async (id: number) => {
+    try {
+        const response = await axios.get(`${API_URL}reservations/${id}/`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
 
-// Create a new reservation
-export const createReservation = async (reservationData: Reservation): Promise<Reservation> => {
-  try {
-    const response = await axios.post(baseUrl, reservationData);
-    return response.data;
-  } catch (error) {
-    throw new Error('Error creating reservation');
-  }
-};
+// Function to create a new reservation
+export const createReservation = async (reservationData: any) => {
+    try {
+        const response = await axios.post(`${API_URL}reservations/`, reservationData);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
 
-// Update an existing reservation
-export const updateReservation = async (id: string, reservationData: Reservation): Promise<Reservation> => {
-  try {
-    const response = await axios.put(`${baseUrl}/${id}`, reservationData);
-    return response.data;
-  } catch (error) {
-    throw new Error('Error updating reservation');
-  }
-};
+// Function to update a reservation
+export const updateReservation = async (id: number, reservationData: any) => {
+    try {
+        const response = await axios.put(`${API_URL}reservations/${id}/`, reservationData);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}
 
-// Delete a reservation
-export const deleteReservation = async (id: string): Promise<void> => {
-  try {
-    await axios.delete(`${baseUrl}/${id}`);
-  } catch (error) {
-    throw new Error('Error deleting reservation');
-  }
-};
+// Function to delete a reservation
+export const deleteReservation = async (id: number) => {
+    try {
+        const response = await axios.delete(`${API_URL}reservations/${id}/`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}

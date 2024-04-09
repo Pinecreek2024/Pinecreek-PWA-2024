@@ -8,6 +8,7 @@ interface ShoppingCartItemProps {
     name: string;
     price: number;
     quantity: number;
+    imageUrl?: string; // Optional image URL
   };
   onRemove: () => void;
 }
@@ -15,12 +16,17 @@ interface ShoppingCartItemProps {
 const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({ item, onRemove }) => {
   return (
     <div className={styles.shoppingCartItem}>
+      {item.imageUrl && (
+        <div className={styles.itemImage}>
+          <img src={item.imageUrl} alt={item.name} />
+        </div>
+      )}
       <div className={styles.itemInfo}>
         <p>{item.name}</p>
-        <p>${item.price.toFixed(2)} x {item.quantity}</p>
+        <p>${(item.price * item.quantity).toFixed(2)} (${item.price.toFixed(2)} x {item.quantity})</p>
       </div>
       <div className={styles.removeButton}>
-        <Button onClick={onRemove}>Remove</Button>
+        <Button onClick={onRemove} aria-label={`Remove ${item.name} from cart`}>Remove</Button>
       </div>
     </div>
   );

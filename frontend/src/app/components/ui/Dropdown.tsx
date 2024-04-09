@@ -13,7 +13,14 @@ const Dropdown: React.FC<DropdownProps> = ({ label, name, options, value, onChan
   return (
     <div className={styles.dropdownGroup}>
       <label htmlFor={name}>{label}</label>
-      <select name={name} id={name} value={value} onChange={onChange} className={styles.dropdown}>
+      <select
+        name={name}
+        id={name}
+        value={value}
+        onChange={onChange}
+        className={styles.dropdown}
+        aria-label={label} // Added for accessibility
+      >
         {options.map(option => (
           <option key={option.value} value={option.value}>
             {option.label}
