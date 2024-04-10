@@ -1,5 +1,5 @@
 // Importing necessary libraries and types
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { MenuItem } from '@/types/menuTypes'; // Ensure this type is correctly defined
 
 const baseUrl = '/api/menu'; // Adjust to match your actual API endpoint

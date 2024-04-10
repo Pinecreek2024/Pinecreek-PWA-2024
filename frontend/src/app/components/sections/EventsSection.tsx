@@ -26,6 +26,10 @@ const EventsSection: React.FC = () => {
     fetchEvents();
   }, []);
 
+  const handleCardClick = () => {
+    console.log('Card clicked!');
+  };
+
   return (
     <SectionLayout title="Upcoming Events">
       <div className={styles.cardsContainer}>
@@ -38,7 +42,7 @@ const EventsSection: React.FC = () => {
               title={event.title}
               imageUrl={event.imageUrl}
               description={event.description}
-              onClick={() => {/* Define onClick action if necessary */}}
+              onClick={handleCardClick} // Add the onClick event handler
             />
           ))
         )}

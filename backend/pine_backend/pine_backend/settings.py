@@ -38,6 +38,14 @@ INSTALLED_APPS = [
     'table_reservations',
     'event_quotations',
     'customer_portal',
+    'orders',
+    'products',
+    'events',
+    'farmstall',
+    'menu',
+    'retail_goods',
+    'special_offers',
+    'reviews',
 
     # Django REST framework
     'rest_framework',

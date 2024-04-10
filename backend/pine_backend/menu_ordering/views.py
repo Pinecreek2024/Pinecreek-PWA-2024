@@ -1,17 +1,12 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import FoodItem
-from .serializers import FoodItemSerializer
+from rest_framework import status
+from .models import FoodItem, Order
+from .serializers import FoodItemSerializer, OrderSerializer
 
 class FoodItemViewSet(viewsets.ModelViewSet):
     queryset = FoodItem.objects.all()
     serializer_class = FoodItemSerializer
-
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None, *args, **kwargs):
         try:
@@ -30,3 +25,7 @@ class FoodItemViewSet(viewsets.ModelViewSet):
         except FoodItem.DoesNotExist:
             return Response({'error': 'Not Found'}, status=status.HTTP_404_NOT_FOUND)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

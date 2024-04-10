@@ -16,7 +16,11 @@ const SpecialOffersSection: React.FC = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        setSpecialOffers(data);
+        if (Array.isArray(data)) { // Add a check to ensure data is an array
+          setSpecialOffers(data);
+        } else {
+          throw new Error('Invalid data format! Expected an array.');
+        }
       } catch (error) {
         console.error('Failed to fetch special offers:', error);
         setError('Failed to load special offers. Please try again later.');

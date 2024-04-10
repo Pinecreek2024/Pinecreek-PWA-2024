@@ -15,7 +15,11 @@ const ReviewsSection: React.FC = () => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        setReviews(data);
+        if (Array.isArray(data)) { // Add a check to ensure that data is an array
+          setReviews(data);
+        } else {
+          throw new Error('Invalid data format!');
+        }
       } catch (error) {
         console.error('Failed to fetch reviews:', error);
         setError('Failed to load reviews. Please try again later.');

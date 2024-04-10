@@ -15,3 +15,11 @@ class FoodItem(models.Model):
 
     def __str__(self):
         return self.name
+
+class Order(models.Model):
+    food_item = models.ForeignKey(FoodItem, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Order {self.id} for {self.food_item.name}"
